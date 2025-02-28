@@ -23,33 +23,37 @@ function HomePage() {
     fetchMovies();
   }, []);
 
-  if (loading) return <div className="text-center text-xl py-10">Caricamento...</div>;
+  if (loading) return <div className="text-center text-xl py-10 text-gray-300">Caricamento...</div>;
   if (error) return <div className="text-red-500 text-center py-10">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">Film in evidenza</h1>
-
+    <div className="min-h-screen bg-black text-white p-8">
+      <h1 className="text-4xl font-bold text-center mb-10">Film in evidenza</h1>
       {movies.length === 0 ? (
-        <p className="text-center text-gray-600 text-2xl">Nessun film disponibile.</p>
+        <p className="text-center text-gray-400 text-2xl">Nessun film disponibile.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.map((movie, index) => (
             <div
               key={movie.id || index}
-              className="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition duration-300"
+              className="bg-gray-900 p-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
             >
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {movie.title || "Titolo non disponibile"}
-              </h2>
-              <p className="text-gray-700 mb-1">
-                <span className="font-medium">Regista:</span> {movie.director || "Sconosciuto"}
+              <h2 className="text-xl font-semibold mb-2">{movie.title || "Titolo non disponibile"}</h2>
+              <div className="w-full h-60 overflow-hidden rounded-md mb-3">
+                <img
+                  className="w-full h-full object-cover"
+                  src={movie.image || "https://via.placeholder.com/300"}
+                  alt={movie.title || "Titolo non disponibile"}
+                />
+              </div>
+              <p className="text-gray-400 mb-1">
+                <span className="font-medium text-gray-200">Regista:</span> {movie.director || "Sconosciuto"}
               </p>
-              <p className="text-gray-600 mb-4">
-                <span className="font-medium">Anno:</span> {movie.release_year || "N/D"}
+              <p className="text-gray-400 mb-4">
+                <span className="font-medium text-gray-200">Anno:</span> {movie.release_year || "N/D"}
               </p>
               <Link to={`/movie/${movie.id}`}>
-                <button className="w-full bg-blue-500 text-white py-2 rounded-md shadow hover:bg-blue-600 transition">
+                <button className="w-full bg-blue-600 text-white py-2 rounded-md shadow hover:bg-blue-700 transition">
                   Guarda Dettagli
                 </button>
               </Link>
