@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:5173";
+const API_URL = "http://localhost:3000";
 
 // Crea un'istanza di Axios con configurazione personalizzata
 const apiClient = axios.create({
@@ -11,7 +11,7 @@ const apiClient = axios.create({
 
 // Funzione per ottenere i film
 export const instance = axios.create({
-  baseURL: "http://localhost:5173",
+  baseURL: API_URL,
   headers: {
     "Content-Type": "application/json",
   },
